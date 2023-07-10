@@ -1,11 +1,11 @@
-function ExerciseCard (props) {
+function ExerciseCard ({exercise}) { // Displays exs in a CARD
    return (
     <div className="bg-secondary text-light border p-4 m-2">
-        <h4>{props.exercise.name}</h4>
-        <p>{props.exercise.desc}</p>
-        <h5>{props.exercise.category}</h5> 
-  </div>
+        <h3>{exercise.name}</h3>
+        <p>Description: {exercise.desc}</p>
+        <p><em>Type: {exercise.category}</em></p> 
+   </div>
    ) 
 }
 
-export default ExerciseCard
+export default ExerciseCard;
