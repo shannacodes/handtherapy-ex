@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ViewAllExs from "./ViewAllExs.js";
+import ViewAllExs from "./components/ViewAllExs.js";
 
 function App() {
   const [showExercises, setShowExercises] = useState(false);
