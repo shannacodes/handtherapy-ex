@@ -1,64 +1,53 @@
 import React, { useState } from "react";
 import logo from "../src/images/logo2.png";
 import { EXERCISES } from "./data/arrays/EXERCISES.js";
-import ExerciseCard from "./components/ExerciseCard.js";
-import "../src/buttonStyle.css"
+import "../src/styles/home.css";
+import HomePage from "./pages/HomePage";
+import RandomPage from "./components/RandomPage";
+import { Link, Route, Routes } from "react-router-dom";
+import ExerciseCard from "./components/ExerciseCard";
+import ExercisePage from "./pages/ExercisePage";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 
 function App() {
-  // const exBtn = {
-  //   color: "white",
-  //   backgroundColor: "#5080FD",
-  //   padding: "14px",
-  //   margin: "4px 2px",
-  //   fontSize: "18px",
-  //   fontWeight: "bold",
-  //   border: "none",
-  //   borderRadius: "8px",
-  // };
-
-  const [exerciseFilter, setExerciseFilter] = useState("Finger");
-
-  let filteredExercises;
-  if (exerciseFilter === "All") {
-    filteredExercises = EXERCISES;
-  } else {
-    filteredExercises = EXERCISES.filter(
-      (exercise) => exercise.category === exerciseFilter
-    );
-  }
+  const [exerciseList, setExerciseList] = useState(EXERCISES);
 
   return (
-    <div className="bg-light text-dark border p-5 m-5 text-center">
+    <div className="bg-white text-dark border p-5 m-5 text-center">
       <img src={logo} alt="Hand Exercise Generator App Logo" />
-      <br />
-      <p>
-        View exercises by body part:
-        <br />
-        <button className="buttonStyle" onClick={() => setExerciseFilter("Finger")}>
-          Fingers
-        </button>{" "}
-        <button className="buttonStyle" onClick={() => setExerciseFilter("Wrist")}>
-          Wrist
-        </button>{" "}
-        <button className="buttonStyle" onClick={() => setExerciseFilter("Elbow")}>
-          Elbow
-        </button>{" "}
-        <button className="buttonStyle" onClick={() => setExerciseFilter("Shoulder")}>
-          Shoulder
-        </button>
-        <br />
-        <button className="buttonStyle" onClick={() => setExerciseFilter("All")}>
-          {" "}
-          View All Exercises
-        </button>
-        <br />
-        <br />
-      </p>
-      <div>
-        {filteredExercises.map((exercise) => (
-          <ExerciseCard key={exercise.id} exercise={exercise} />
-        ))}
-      </div>
+      <p></p>
+
+      <Navbar bg="dark" data-bs-theme="dark">
+        <Container>
+          <Navbar.Brand as={Link} to="/">
+            Hand and Arm Exercises
+          </Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/">
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/random">
+              Random
+            </Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+
+      <Container className="mt-4">
+        <Routes>
+          <Route path="/" element={<HomePage exerciseList={exerciseList} />} />
+          <Route
+            path="/random/"
+            element={<RandomPage exerciseList={exerciseList} />}
+          />
+          <Route
+            path="/exercise/:exerciseId"
+            element={<ExercisePage exerciseList={exerciseList} />} // : means URL param
+          />
+        </Routes>
+      </Container>
     </div>
   );
 }

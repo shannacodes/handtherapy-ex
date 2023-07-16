@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+.buttonStyle {
+  color: white;
+  background-color: #5080FD;
+  padding: 14px;
+  margin: 4px 2px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+}
+
+.buttonStyle:hover {
+  color: white;
+  background-color: #7ED957;
+  padding: 14px;
+  margin: 4px 2px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+}
