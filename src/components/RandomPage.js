@@ -5,7 +5,14 @@ export default function RandomPage({ exerciseList }) {
   return (
     <div>
       <h5>Check out this random exercise:</h5>
-      <h2 className="display-1">{randomExercise.name}</h2>
+      <br />
+      <br />
+      <h2 className="display-3">{randomExercise.name}</h2>
+      <br />
+      <br />
+      <p>
+        <strong>Description:</strong> {randomExercise.desc}
+      </p>
     </div>
   );
 }
