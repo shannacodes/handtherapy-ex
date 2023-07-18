@@ -1,22 +1,19 @@
 import React, { useState } from "react";
-import logo from "../src/images/logo2.png";
 import { EXERCISES } from "./data/arrays/EXERCISES.js";
 import "../src/styles/home.css";
 import HomePage from "./pages/HomePage";
 import RandomPage from "./components/RandomPage";
-import { Link, Route, Routes } from "react-router-dom";
-import ExerciseCard from "./components/ExerciseCard";
+import { Route, Routes } from "react-router-dom";
 import ExercisePage from "./pages/ExercisePage";
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   const [exerciseList, setExerciseList] = useState(EXERCISES);
 
   return (
-    <div className="text-center">
+    <div>
       <Header />
 
       <main>
@@ -37,6 +34,7 @@ function App() {
           </Routes>
         </Container>
       </main>
+      <Footer />
     </div>
   );
 }
