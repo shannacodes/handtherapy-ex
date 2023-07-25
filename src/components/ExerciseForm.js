@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-export default function ExerciseForm({ onSubmit }) {
+export default function ExerciseForm({ onSubmit, initialData = {} }) {
   const [exerciseData, setExerciseData] = useState({
-    name: "",
-    desc: "",
-    category: "",
+    name: initialData.name || "",
+    desc: initialData.desc || "",
+    category: initialData.category ||"",
   });
 
   const handleChange = (event) => {
@@ -68,7 +68,7 @@ export default function ExerciseForm({ onSubmit }) {
       </select>
       <br />
       <button className="buttonStyle" type="submit">
-        Add New Exercise
+        Submit
       </button>
     </form>
   );

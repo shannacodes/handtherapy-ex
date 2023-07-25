@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addExercise, editExercise, deleteExercise } from "../redux/actions";
 import { v4 as uuidv4 } from "uuid";
@@ -16,11 +16,10 @@ export default function CRUDExercise() {
     dispatch(addExercise(newExercise));
   };
 
-  const handleEditExercise = (exerciseId) => {
+  const handleEditExercise = (exerciseId, updatedExerciseData) => {
     const updatedExercise = {
-      name: "Updated Exercise",
-      desc: "Updated Description",
-      category: "Updated Category", // Need to change into drop-down
+      id: exerciseId,
+      ...updatedExerciseData,
     };
     dispatch(editExercise(exerciseId, updatedExercise));
   };
@@ -29,37 +28,57 @@ export default function CRUDExercise() {
     dispatch(deleteExercise(exerciseId));
   };
 
+  const [editingExercise, setEditingExercise] = useState(null);
+
   return (
     <div>
-      <h2>Create Your Own Exercise</h2>
-      <p>Fill out the form below, then click the "Add New Exercise" button.</p>
-      <ExerciseForm onSubmit={handleAddExercise} />
-      <br />
-      <br />
-      <h2>List of Exercises</h2>
-      <ul>
-        {exerciseList.map((exercise) => (
-          <li key={exercise.id}>
-            <strong>Exercise Name:</strong> {exercise.name}
-            <br />
-            <strong>Description:</strong> {exercise.desc}
-            <br />
-            <strong>Category:</strong> {exercise.category} <br />
-            <button
-              className="smallButtonStyle"
-              onClick={() => handleEditExercise(exercise.id)}
-            >
-              Edit
-            </button>
-            <button
-              className="smallDeleteButtonStyle"
-              onClick={() => handleDeleteExercise(exercise.id)}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+      {editingExercise ? (
+        <>
+          <h2>Edit Exercise</h2>
+          <ExerciseForm
+            onSubmit={(updatedExerciseData) => {
+              handleEditExercise(editingExercise.id, updatedExerciseData);
+              setEditingExercise(null); // Clear the editing state
+            }}
+            initialData={editingExercise}
+          />
+          <br />
+        </>
+      ) : (
+        <>
+          <h2>Create Your Own Exercise</h2>
+          <p>
+            Fill out the form below, then click the "Add New Exercise" button.
+          </p>
+          <ExerciseForm onSubmit={handleAddExercise} />
+          <br />
+          <br />
+          <h2>List of Exercises</h2>
+          <ul>
+            {exerciseList.map((exercise) => (
+              <li key={exercise.id}>
+                <strong>Exercise Name:</strong> {exercise.name}
+                <br />
+                <strong>Description:</strong> {exercise.desc}
+                <br />
+                <strong>Category:</strong> {exercise.category} <br />
+                <button
+                  className="smallButtonStyle"
+                  onClick={() => setEditingExercise(exercise)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="smallDeleteButtonStyle"
+                  onClick={() => handleDeleteExercise(exercise.id)}
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 }
