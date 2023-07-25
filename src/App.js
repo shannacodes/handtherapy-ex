@@ -8,6 +8,7 @@ import ExercisePage from "./pages/ExercisePage";
 import Container from "react-bootstrap/Container";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CRUDExercise from "./pages/CRUDExercise.js";
 
 function App() {
   const [exerciseList, setExerciseList] = useState(EXERCISES);
@@ -31,6 +32,7 @@ function App() {
               path="/exercise/:exerciseId"
               element={<ExercisePage exerciseList={exerciseList} />} // : means URL param
             />
+            <Route path="/crudexercise" element={<CRUDExercise />} />
           </Routes>
         </Container>
       </main>

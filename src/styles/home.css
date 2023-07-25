@@ -58,3 +58,25 @@
   border: none;
   border-radius: 8px;
 }
+
+.smallButtonStyle {
+  color: white;
+  background-color: #5080FD;
+  padding: 8px 14px;
+  margin: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+}
+
+.smallButtonStyle:hover {
+  color: white;
+  background-color: #7ED957;
+  padding: 8px 14px;
+  margin: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+}

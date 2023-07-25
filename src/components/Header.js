@@ -25,6 +25,9 @@ const Header = () => {
               <Nav.Link className="text-white" as={Link} to="/random">
                 Random
               </Nav.Link>
+              <Nav.Link className="text-white" as={Link} to="/crudexercise">
+                Create an Exercise
+              </Nav.Link>
             </Nav>
           </Container>
         </Navbar>

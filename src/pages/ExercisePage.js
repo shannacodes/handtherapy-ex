@@ -7,7 +7,7 @@ export default function ExercisePage({ exerciseList }) {
   const exercise = exerciseList.find((e) => e.id === exerciseId);
 
   if (!exercise) {
-    return <h2>Game not found.</h2>;
+    return <h2>Exercise not found.</h2>;
   }
 
   return (
