@@ -20,7 +20,7 @@ export default function CRUDExercise() {
     const updatedExercise = {
       name: "Updated Exercise",
       desc: "Updated Description",
-      category: "Wrist", // Need to change into drop-down
+      category: "Updated Category", // Need to change into drop-down
     };
     dispatch(editExercise(exerciseId, updatedExercise));
   };
@@ -40,7 +40,11 @@ export default function CRUDExercise() {
       <ul>
         {exerciseList.map((exercise) => (
           <li key={exercise.id}>
-            {exercise.name} - {exercise.category}{" "}
+            <strong>Exercise Name:</strong> {exercise.name}
+            <br />
+            <strong>Description:</strong> {exercise.desc}
+            <br />
+            <strong>Category:</strong> {exercise.category} <br />
             <button
               className="smallButtonStyle"
               onClick={() => handleEditExercise(exercise.id)}
