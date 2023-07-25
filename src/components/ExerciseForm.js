@@ -35,7 +35,7 @@ export default function ExerciseForm({ onSubmit }) {
         name="name"
         value={exerciseData.name}
         onChange={handleChange}
-        placeholder="Write the name of your exercise..."
+        placeholder="Exercise Title..."
       />
       <br />
       <label>
@@ -46,21 +46,28 @@ export default function ExerciseForm({ onSubmit }) {
         name="desc"
         value={exerciseData.desc}
         onChange={handleChange}
-        placeholder="Write a brief description about your exercise..."
+        placeholder="Brief Description..."
       />
       <br />
       <label>
         <strong>Category: </strong>
       </label>{" "}
-      <input
-        type="text"
+      <select
         name="category"
         value={exerciseData.category}
         onChange={handleChange}
-        placeholder="Choose one..."
-      />
+      >
+        <option value="">Choose one...</option>
+        <option value="Finger">Finger</option>
+        <option value="Thumb">Thumb</option>
+        <option value="Wrist">Wrist</option>
+        <option value="Forearm">Forearm</option>
+        <option value="Elbow">Elbow</option>
+        <option value="Shoulder">Shoulder</option>
+        <option value="Other">Other</option>
+      </select>
       <br />
-      <button className="smallButtonStyle" type="submit">
+      <button className="buttonStyle" type="submit">
         Add New Exercise
       </button>
     </form>

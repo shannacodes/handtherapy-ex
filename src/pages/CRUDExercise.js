@@ -52,7 +52,7 @@ export default function CRUDExercise() {
               Edit
             </button>
             <button
-              className="smallButtonStyle"
+              className="smallDeleteButtonStyle"
               onClick={() => handleDeleteExercise(exercise.id)}
             >
               Delete
