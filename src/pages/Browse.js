@@ -15,8 +15,13 @@ export default function HomePage({ exerciseList }) {
   }
 
   return (
-    <div className="p-5">
-      <Container>
+    <div>
+      <Container className="py-5">
+        <Row>
+          <Col className="py-3">
+            <h1>Browse Exercises</h1>
+          </Col>
+        </Row>
         <Row>
           <Col xs={12} sm={4}>
             View exercises by body part:

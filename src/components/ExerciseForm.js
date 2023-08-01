@@ -4,7 +4,7 @@ export default function ExerciseForm({ onSubmit, initialData = {} }) {
   const [exerciseData, setExerciseData] = useState({
     name: initialData.name || "",
     desc: initialData.desc || "",
-    category: initialData.category ||"",
+    category: initialData.category || "",
   });
 
   const handleChange = (event) => {
@@ -16,7 +16,7 @@ export default function ExerciseForm({ onSubmit, initialData = {} }) {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevents refresh
     onSubmit(exerciseData);
     setExerciseData({
       name: "",

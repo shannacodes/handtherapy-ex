@@ -47,9 +47,7 @@ export default function CRUDExercise() {
       ) : (
         <>
           <h2>Create Your Own Exercise</h2>
-          <p>
-            Fill out the form below, then click the "Add New Exercise" button.
-          </p>
+          <p>Fill out the form below, then click the "Submit" button.</p>
           <ExerciseForm onSubmit={handleAddExercise} />
           <br />
           <br />

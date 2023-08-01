@@ -15,6 +15,7 @@ export default function ExercisePage({ exerciseList }) {
       <h3>{exercise.name}</h3>
       <p>Description: {exercise.desc}</p>
       <p>Type: {exercise.category}</p>
+      <p></p>
     </div>
   );
 }

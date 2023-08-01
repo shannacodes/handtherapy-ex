@@ -22,8 +22,11 @@ const Header = () => {
               <Nav.Link className="text-white" as={Link} to="/">
                 Home
               </Nav.Link>
-              <Nav.Link className="text-white" as={Link} to="/random">
-                Random
+              <Nav.Link className="text-white" as={Link} to="/browse">
+                Browse
+              </Nav.Link>
+              <Nav.Link className="text-white" as={Link} to="/featured">
+                Featured Exercise
               </Nav.Link>
               <Nav.Link className="text-white" as={Link} to="/crudexercise">
                 Create Exercise
