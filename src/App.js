@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CRUDExercise from "./pages/CRUDExercise.js";
 import WelcomePage from "./pages/WelcomePage.js";
+import SearchResultsPage from "./pages/SearchResultsPage.js";
 
 function App() {
   const [exerciseList] = useState(EXERCISES); // Removed setExerciseList from this line
@@ -21,10 +22,7 @@ function App() {
       <main>
         <Container className="mt-4">
           <Routes>
-            <Route
-              path="/"
-              element={<WelcomePage />}
-            />
+            <Route path="/" element={<WelcomePage />} />
             <Route
               path="/browse/"
               element={<HomePage exerciseList={exerciseList} />}
@@ -35,9 +33,13 @@ function App() {
             />
             <Route
               path="/exercise/:exerciseId"
-              element={<ExercisePage exerciseList={exerciseList} />} // : means URL param
+              element={<ExercisePage exerciseList={exerciseList} />}
             />
             <Route path="/crudexercise" element={<CRUDExercise />} />
+            <Route
+              path="/search-results/:searchTerm"
+              element={<SearchResultsPage />}
+            />
           </Routes>
         </Container>
       </main>
