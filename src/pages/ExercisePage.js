@@ -12,10 +12,23 @@ export default function ExercisePage({ exerciseList }) {
 
   return (
     <div>
+      <img
+        src={exercise.image}
+        alt={exercise.name}
+        style={{ maxWidth: "100%", height: "auto" }}
+      />
+      <br></br>
+      <br></br>
       <h3>{exercise.name}</h3>
-      <p>Description: {exercise.desc}</p>
-      <p>Category: {exercise.category}</p>
-      <p></p>
+      <p>
+        <strong>Description:</strong> {exercise.desc}
+      </p>
+      <p>
+        <strong>Instructions:</strong> {exercise.instr}
+      </p>
+      <p>
+        <strong>Category:</strong> {exercise.category}
+      </p>
     </div>
   );
 }

@@ -32,7 +32,7 @@ const Header = () => {
                 onSubmit={handleSubmit}
               >
                 <SearchBar onChange={handleSearch} />
-                <button type="submit">Search</button>
+                <button type="submit" className="smallButtonStyle">Search</button>
               </form>
             </Col>
             <Col xs={12} className="text-center">
