@@ -32,7 +32,9 @@ const Header = () => {
                 onSubmit={handleSubmit}
               >
                 <SearchBar onChange={handleSearch} />
-                <button type="submit" className="smallButtonStyle">Search</button>
+                <button type="submit" className="smallButtonStyle">
+                  Search
+                </button>
               </form>
             </Col>
             <Col xs={12} className="text-center">
@@ -56,7 +58,7 @@ const Header = () => {
               <Nav.Link className="text-white" as={Link} to="/featured">
                 Featured Exercise
               </Nav.Link>
-              <Nav.Link className="text-white" as={Link} to="/crudexercise">
+              <Nav.Link className="text-white" as={Link} to="/create">
                 Create Exercise
               </Nav.Link>
             </Nav>

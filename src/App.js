@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { EXERCISES } from "./data/arrays/EXERCISES.js";
 import "../src/styles/home.css";
-import HomePage from "./pages/Browse.js";
+import BrowsePage from "./pages/BrowsePage.js";
 import FeaturedPage from "./components/FeaturedPage.js";
 import { Route, Routes } from "react-router-dom";
 import ExercisePage from "./pages/ExercisePage";
@@ -25,7 +25,7 @@ function App() {
             <Route path="/" element={<WelcomePage />} />
             <Route
               path="/browse/"
-              element={<HomePage exerciseList={exerciseList} />}
+              element={<BrowsePage exerciseList={exerciseList} />}
             />
             <Route
               path="/featured/"
@@ -35,7 +35,7 @@ function App() {
               path="/exercise/:exerciseId"
               element={<ExercisePage exerciseList={exerciseList} />}
             />
-            <Route path="/crudexercise" element={<CRUDExercise />} />
+            <Route path="/create" element={<CRUDExercise />} />
             <Route
               path="/search-results/:searchTerm"
               element={<SearchResultsPage />}

@@ -1,0 +1,39 @@
+.form-container {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    background-color: #eeeeee;
+  }
+  
+.form-group {
+    margin-bottom: 15px;
+  }
+  
+.form-label {
+    font-weight: strong;
+    font-size: 18px;
+  }
+  
+.form-input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 18px;
+  }
+  
+.form-select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+.error {
+    color: red;
+    font-size: 16px;
+    margin-top: 5px;
+  }
+  
