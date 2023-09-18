@@ -14,8 +14,8 @@ export default function WelcomePage() {
             <p>
               <strong>The Hand Exercise Generator</strong> App is designed to
               help physical and occupational therapists create and share custom
-              hand and upper extremity exercises and home programs with their
-              clients easily, efficiently, and sustainably.
+              hand and upper extremity exercises and home programs easily,
+              efficiently, and sustainably.
             </p>
           </div>
         </Col>

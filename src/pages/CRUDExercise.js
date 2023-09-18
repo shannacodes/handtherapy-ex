@@ -59,6 +59,8 @@ export default function CRUDExercise() {
                 <br />
                 <strong>Description:</strong> {exercise.desc}
                 <br />
+                <strong>Instructions:</strong> {exercise.instr}
+                <br />
                 <strong>Category:</strong> {exercise.category} <br />
                 <button
                   className="smallButtonStyle"

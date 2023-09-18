@@ -7,7 +7,9 @@ import "../styles/exerciseform.css";
 const validationSchema = Yup.object({
   name: Yup.string().required("Exercise Name is required."),
   desc: Yup.string().required("Description is required."),
+  instr: Yup.string().required("Instructions are required."),
   category: Yup.string().required("Category is required."),
+  file: Yup.mixed(),
 });
 
 export default function ExerciseForm({ onSubmit, initialData = {} }) {
@@ -20,6 +22,7 @@ export default function ExerciseForm({ onSubmit, initialData = {} }) {
               initialValues={{
                 name: initialData.name || "",
                 desc: initialData.desc || "",
+                instr: initialData.instr || "",
                 category: initialData.category || "",
               }}
               validationSchema={validationSchema}
@@ -68,13 +71,39 @@ export default function ExerciseForm({ onSubmit, initialData = {} }) {
                       <div className="form-group">
                         <Field
                           as="textarea"
-                          rows="3"
+                          rows="2"
                           name="desc"
                           className="form-input"
                           placeholder="Brief Description..."
                         />
                         <ErrorMessage
                           name="desc"
+                          component="div"
+                          className="error"
+                        />
+                      </div>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col xs="12" md="4">
+                      <div className="form-group">
+                        <label className="form-label" htmlFor="instr">
+                          <strong>Instructions:</strong>
+                        </label>
+                      </div>
+                    </Col>
+                    <Col xs="12" md="8">
+                      <div className="form-group">
+                        <Field
+                          as="textarea"
+                          rows="5"
+                          name="instr"
+                          className="form-input"
+                          placeholder="Type instructions here..."
+                        />
+                        <ErrorMessage
+                          name="instr"
                           component="div"
                           className="error"
                         />

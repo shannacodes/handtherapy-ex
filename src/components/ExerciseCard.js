@@ -8,8 +8,10 @@ function ExerciseCard({ exercise }) {
         src={exercise.image}
         alt={exercise.name}
         style={{ maxWidth: "100%", height: "auto" }}
-      /><br></br><br></br>
-      <h3>{exercise.name}</h3>
+      />
+      <br></br>
+      <br></br>
+      <h4>{exercise.name}</h4>
       <p>
         <strong>Description:</strong> {exercise.desc}
         <br></br>

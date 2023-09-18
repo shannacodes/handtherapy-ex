@@ -3,12 +3,21 @@ export default function FeaturedPage({ exerciseList }) {
     exerciseList[Math.floor(Math.random() * exerciseList.length)];
 
   return (
-    <div className="p-5">
-      <h5>Check out this featured exercise:</h5>
-      <br />
-      <h2 className="display-3">{featuredExercise.name}</h2>
-      <br />
-        <strong>Description:</strong> {featuredExercise.desc}
-    </div>
+    <>
+      <div className="p-3">
+        <h5>Check out this featured exercise:</h5>
+      </div>
+      <div className="bg-light text-black border rounded p-4 m-2">
+        <p>
+          <h2 className="display-3">{featuredExercise.name}</h2>
+        </p>
+        <p>
+          <strong>Description:</strong> {featuredExercise.desc}
+        </p>
+        <p>
+          <strong>Instructions:</strong> {featuredExercise.instr}
+        </p>
+      </div>
+    </>
   );
 }
