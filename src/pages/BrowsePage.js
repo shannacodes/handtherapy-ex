@@ -1,9 +1,23 @@
-import { useState } from "react";
-import ExerciseCard from "../components/ExerciseCard";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import axios from "axios";
+import ExerciseCard from "../components/ExerciseCard";
 
-export default function HomePage({ exerciseList }) {
+export default function BrowsePage() {
+  const [exerciseList, setExerciseList] = useState([]);
   const [exerciseFilter, setExerciseFilter] = useState("Finger");
+
+  useEffect(() => {
+    // Fetch exercises from the API
+    axios
+      .get("http://localhost:3002/exercises")
+      .then((response) => {
+        setExerciseList(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching exercises:", error);
+      });
+  }, []);
 
   let filteredExercises;
   if (exerciseFilter === "All") {

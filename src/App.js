@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { EXERCISES } from "./data/arrays/EXERCISES.js";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+// import { EXERCISES } from "./data/arrays/EXERCISES.js";
 import "../src/styles/home.css";
 import BrowsePage from "./pages/BrowsePage.js";
 import FeaturedPage from "./components/FeaturedPage.js";
@@ -13,7 +14,19 @@ import WelcomePage from "./pages/WelcomePage.js";
 import SearchResultsPage from "./pages/SearchResultsPage.js";
 
 function App() {
-  const [exerciseList] = useState(EXERCISES); // Removed setExerciseList from this line
+  const [exerciseList, setExerciseList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3002/exercises")
+      .then((response) => {
+        setExerciseList(response.data);
+        console.log("Exercise List:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   return (
     <div>

@@ -9,7 +9,7 @@ export default function FeaturedPage({ exerciseList }) {
       </div>
       <div className="bg-light text-black border rounded p-4 m-2">
         <p>
-          <h2 className="display-3">{featuredExercise.name}</h2>
+          <h2>{featuredExercise.name}</h2>
         </p>
         <p>
           <strong>Description:</strong> {featuredExercise.desc}

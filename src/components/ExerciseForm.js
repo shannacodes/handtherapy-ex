@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Container, Row, Col } from "reactstrap";
@@ -9,10 +9,16 @@ const validationSchema = Yup.object({
   desc: Yup.string().required("Description is required."),
   instr: Yup.string().required("Instructions are required."),
   category: Yup.string().required("Category is required."),
-  file: Yup.mixed(),
+  // file: Yup.mixed(),
 });
 
 export default function ExerciseForm({ onSubmit, initialData = {} }) {
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   return (
     <Container>
       <Row className="justify-content-left">
@@ -24,9 +30,11 @@ export default function ExerciseForm({ onSubmit, initialData = {} }) {
                 desc: initialData.desc || "",
                 instr: initialData.instr || "",
                 category: initialData.category || "",
+                file: null,
               }}
               validationSchema={validationSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
+                // need to include file when connecting to back-end
                 onSubmit(values);
                 setSubmitting(false);
                 resetForm();
@@ -137,6 +145,31 @@ export default function ExerciseForm({ onSubmit, initialData = {} }) {
                         </Field>
                         <ErrorMessage
                           name="category"
+                          component="div"
+                          className="error"
+                        />
+                      </div>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col xs="12" md="4">
+                      <div className="form-group">
+                        <label className="form-label" htmlFor="file">
+                          <strong>Image:</strong>
+                        </label>
+                      </div>
+                    </Col>
+                    <Col xs="12" md="8">
+                      <div className="form-group">
+                        <input
+                          type="file"
+                          name="file"
+                          accept="image/*" // Limit file type to images
+                          onChange={handleFileChange}
+                        />
+                        <ErrorMessage
+                          name="file"
                           component="div"
                           className="error"
                         />
