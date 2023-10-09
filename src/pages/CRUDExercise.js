@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { editExercise, deleteExercise } from "../redux/actions";
+import { deleteExercise } from "../redux/actions";
 import ExerciseForm from "../components/ExerciseForm";
 import axios from "axios";
 
 export default function CRUDExercise() {
   const dispatch = useDispatch();
   const [exerciseList, setExerciseList] = useState([]);
-
+  const [editingExercise, setEditingExercise] = useState(null);
   const resource = "http://localhost:3002/exercises";
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function CRUDExercise() {
         setExerciseList(response.data);
       })
       .catch((error) => {
-        // Handle error here
+        console.error("An error occurred:", error);
       });
   }, []);
 
@@ -25,18 +25,27 @@ export default function CRUDExercise() {
     axios
       .post(resource, newExerciseData)
       .then((response) => {
-        setExerciseList([...exerciseList, response.data]); // Update the local state
+        setExerciseList([...exerciseList, response.data]);
       })
       .catch((error) => {
-        // Handle error here
+        console.error("An error occurred:", error);
       });
   };
 
   const handleEditExercise = (exerciseId, updatedExerciseData) => {
     axios
-      .put(`http://localhost:3002/exercises/${exerciseId}`, updatedExerciseData)
+      .put(`${resource}/${exerciseId}`, updatedExerciseData)
       .then((response) => {
-        dispatch(editExercise(exerciseId, updatedExerciseData));
+        const updatedExercises = exerciseList.map((exercise) => {
+          if (exercise.id === exerciseId) {
+            return { ...exercise, ...updatedExerciseData };
+          }
+          return exercise;
+        });
+
+        setExerciseList(updatedExercises);
+
+        // Clear the editing state
         setEditingExercise(null);
       })
       .catch((error) => {
@@ -47,7 +56,7 @@ export default function CRUDExercise() {
   const handleDeleteExercise = (exerciseId) => {
     // Make a DELETE request to delete the exercise on the server.
     axios
-      .delete(`http://localhost:3002/exercises/${exerciseId}`)
+      .delete(`${resource}/${exerciseId}`)
       .then((response) => {
         // Dispatch an action to remove the exercise from Redux state.
         dispatch(deleteExercise(exerciseId));
@@ -57,11 +66,9 @@ export default function CRUDExercise() {
         );
       })
       .catch((error) => {
-        // Handle error here
+        console.error("An error occurred:", error);
       });
   };
-
-  const [editingExercise, setEditingExercise] = useState(null);
 
   return (
     <div>
