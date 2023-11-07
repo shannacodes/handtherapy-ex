@@ -33,7 +33,7 @@ export default function BrowsePage() {
       <Container className="py-5">
         <Row>
           <Col className="py-3">
-            <h1>Browse Exercises</h1>
+            <h1>Browse Exercises Below</h1>
           </Col>
         </Row>
         <Row>
