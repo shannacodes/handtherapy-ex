@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/exercises")
+      .get("http://localhost:8080/exercises")
       .then((response) => {
         setExerciseList(response.data);
         console.log("Exercise List:", response.data);

@@ -10,7 +10,7 @@ export default function BrowsePage() {
   useEffect(() => {
     // Fetch exercises from the API
     axios
-      .get("http://localhost:3002/exercises")
+      .get("http://localhost:8080/exercises")
       .then((response) => {
         setExerciseList(response.data);
       })

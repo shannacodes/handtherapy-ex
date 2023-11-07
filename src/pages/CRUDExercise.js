@@ -2,72 +2,90 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteExercise } from "../redux/actions";
 import ExerciseForm from "../components/ExerciseForm";
-import axios from "axios";
 
 export default function CRUDExercise() {
   const dispatch = useDispatch();
   const [exerciseList, setExerciseList] = useState([]);
   const [editingExercise, setEditingExercise] = useState(null);
-  const resource = "http://localhost:3002/exercises";
+  const resource = "http://localhost:8080/exercises"; // important to run local server on this specific port
 
   useEffect(() => {
-    axios
-      .get(resource)
-      .then((response) => {
-        setExerciseList(response.data);
-      })
+    // Fetch exercise data when the component mounts
+    fetch(resource)
+      .then((response) => response.json())
+      .then((data) => setExerciseList(data))
       .catch((error) => {
         console.error("An error occurred:", error);
       });
   }, []);
 
-  const handleAddExercise = (newExerciseData) => {
-    axios
-      .post(resource, newExerciseData)
-      .then((response) => {
-        setExerciseList([...exerciseList, response.data]);
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error);
+  const handleAddExercise = async (newExerciseData) => {
+    try {
+      const response = await fetch(resource, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTQ4NmJiYzUyMzUzOTY2NDM3NDZmNzUiLCJpYXQiOjE2OTkzODU2MjYsImV4cCI6MTY5OTM4OTIyNn0.WCLwQO8qnvwhffM9IM190xQ-JmISPN-lB9FVG9O2Cz4",
+        },
+        body: JSON.stringify(newExerciseData),
       });
+      const data = await response.json();
+      setExerciseList([...exerciseList, data]);
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
   };
 
-  const handleEditExercise = (exerciseId, updatedExerciseData) => {
-    axios
-      .put(`${resource}/${exerciseId}`, updatedExerciseData)
-      .then((response) => {
+  const handleEditExercise = async (exerciseId, updatedExerciseData) => {
+    try {
+      const response = await fetch(`${resource}/${exerciseId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTQ4NmJiYzUyMzUzOTY2NDM3NDZmNzUiLCJpYXQiOjE2OTkzODU2MjYsImV4cCI6MTY5OTM4OTIyNn0.WCLwQO8qnvwhffM9IM190xQ-JmISPN-lB9FVG9O2Cz4",
+        },
+        body: JSON.stringify(updatedExerciseData),
+      });
+      if (response.ok) {
         const updatedExercises = exerciseList.map((exercise) => {
-          if (exercise.id === exerciseId) {
+          if (exercise._id === exerciseId) {
             return { ...exercise, ...updatedExerciseData };
           }
           return exercise;
         });
-
         setExerciseList(updatedExercises);
-
-        // Clear the editing state
         setEditingExercise(null);
-      })
-      .catch((error) => {
-        // Handle error here
-      });
+      } else {
+        // Handle the error appropriately
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
   };
 
-  const handleDeleteExercise = (exerciseId) => {
-    // Make a DELETE request to delete the exercise on the server.
-    axios
-      .delete(`${resource}/${exerciseId}`)
-      .then((response) => {
-        // Dispatch an action to remove the exercise from Redux state.
-        dispatch(deleteExercise(exerciseId));
-
-        setExerciseList((prevExerciseList) =>
-          prevExerciseList.filter((exercise) => exercise.id !== exerciseId)
-        );
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error);
+  const handleDeleteExercise = async (exerciseId) => {
+    try {
+      const response = await fetch(`${resource}/${exerciseId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTQ4NmJiYzUyMzUzOTY2NDM3NDZmNzUiLCJpYXQiOjE2OTkzODU2MjYsImV4cCI6MTY5OTM4OTIyNn0.WCLwQO8qnvwhffM9IM190xQ-JmISPN-lB9FVG9O2Cz4",
+        },
       });
+      if (response.ok) {
+        // Dispatch an action to remove the exercise from Redux state
+        dispatch(deleteExercise(exerciseId));
+        setExerciseList((prevExerciseList) =>
+          prevExerciseList.filter((exercise) => exercise._id !== exerciseId)
+        );
+      } else {
+        // Handle the error appropriately
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
   };
 
   return (
@@ -77,7 +95,7 @@ export default function CRUDExercise() {
           <h2>Edit Exercise</h2>
           <ExerciseForm
             onSubmit={(updatedExerciseData) => {
-              handleEditExercise(editingExercise.id, updatedExerciseData);
+              handleEditExercise(editingExercise._id, updatedExerciseData);
               setEditingExercise(null); // Clear the editing state
             }}
             initialData={editingExercise}
@@ -94,7 +112,7 @@ export default function CRUDExercise() {
           <h2>List of Exercises</h2>
           <ul>
             {exerciseList.map((exercise) => (
-              <li key={exercise.id}>
+              <li key={exercise._id}>
                 <strong>Exercise Name:</strong> {exercise.name}
                 <br />
                 <strong>Description:</strong> {exercise.desc}
@@ -110,7 +128,7 @@ export default function CRUDExercise() {
                 </button>
                 <button
                   className="smallDeleteButtonStyle"
-                  onClick={() => handleDeleteExercise(exercise.id)}
+                  onClick={() => handleDeleteExercise(exercise._id)}
                 >
                   Delete
                 </button>
