@@ -1,8 +1,34 @@
 .navbarStyle {
-    background-color: #081A32;
+    background: linear-gradient(90deg, #081A32, #5080FD);
+    background-size: 200% 100%; 
+    transition: background 0.3s ease;
+
+    /* Other navbar styles */
+}
+
+a.linkStyle {
     color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+a.linkStyle:hover {
+    color: #5080FD !important;
 }
 
 header {
-    background-color: #081A32;
+    background: linear-gradient(90deg, #081A32, #5080FD); 
+    background-size: 200% 100%;
+    transition: background 0.3s ease;
 }
+
+.special {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #7ED957;
+    font-size: 18px;
+}
+
+.special:hover {
+    color: #fff !important;
+} 

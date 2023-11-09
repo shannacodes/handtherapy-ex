@@ -43,23 +43,28 @@ const Header = () => {
           </Row>
         </Container>
 
-        <Navbar className="navbarStyle" sticky="top">
+        <Navbar className="navbarStyle">
           <Container>
             <Navbar.Brand as={Link} to="/">
               <img src={logo2} alt="Small navbar logo" width="55" />
             </Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link className="text-white" as={Link} to="/">
+              <Nav.Link className="linkStyle" as={Link} to="/">
                 Home
               </Nav.Link>
-              <Nav.Link className="text-white" as={Link} to="/browse">
+              <Nav.Link className="linkStyle" as={Link} to="/browse">
                 Browse
               </Nav.Link>
-              <Nav.Link className="text-white" as={Link} to="/featured">
+              <Nav.Link className="linkStyle" as={Link} to="/featured">
                 Featured Exercise
               </Nav.Link>
-              <Nav.Link className="text-white" as={Link} to="/create">
+              <Nav.Link className="linkStyle" as={Link} to="/create">
                 Create Exercise
+              </Nav.Link>
+            </Nav>
+            <Nav classname="ml-auto">
+              <Nav.Link className="special" as={Link} to="/users/login">
+                Login
               </Nav.Link>
             </Nav>
           </Container>

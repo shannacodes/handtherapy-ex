@@ -13,7 +13,7 @@ const validationSchema = Yup.object({
 });
 
 export default function ExerciseForm({ onSubmit, initialData = {} }) {
-  const [file, setFile] = useState(null);
+  const [setFile] = useState(null);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -22,7 +22,7 @@ export default function ExerciseForm({ onSubmit, initialData = {} }) {
   return (
     <Container>
       <Row className="justify-content-left">
-        <Col xs="12" md="6">
+        <Col xs="12" md="9" lg="10">
           <div className="form-container">
             <Formik
               initialValues={{
@@ -43,14 +43,14 @@ export default function ExerciseForm({ onSubmit, initialData = {} }) {
               {({ isSubmitting }) => (
                 <Form>
                   <Row>
-                    <Col xs="12" md="4">
+                    <Col xs="12" md="5">
                       <div className="form-group">
                         <label className="form-label" htmlFor="name">
                           <strong>Exercise Name:</strong>
                         </label>
                       </div>
                     </Col>
-                    <Col xs="12" md="8">
+                    <Col xs="12" md="7">
                       <div className="form-group">
                         <Field
                           type="text"
@@ -68,18 +68,18 @@ export default function ExerciseForm({ onSubmit, initialData = {} }) {
                   </Row>
 
                   <Row>
-                    <Col xs="12" md="4">
+                    <Col xs="12" md="5">
                       <div className="form-group">
                         <label className="form-label" htmlFor="desc">
                           <strong>Description:</strong>
                         </label>
                       </div>
                     </Col>
-                    <Col xs="12" md="8">
+                    <Col xs="12" md="7">
                       <div className="form-group">
                         <Field
                           as="textarea"
-                          rows="2"
+                          rows="3"
                           name="desc"
                           className="form-input"
                           placeholder="Brief Description..."
@@ -94,18 +94,18 @@ export default function ExerciseForm({ onSubmit, initialData = {} }) {
                   </Row>
 
                   <Row>
-                    <Col xs="12" md="4">
+                    <Col xs="12" md="5">
                       <div className="form-group">
                         <label className="form-label" htmlFor="instr">
                           <strong>Instructions:</strong>
                         </label>
                       </div>
                     </Col>
-                    <Col xs="12" md="8">
+                    <Col xs="12" md="7">
                       <div className="form-group">
                         <Field
                           as="textarea"
-                          rows="5"
+                          rows="6"
                           name="instr"
                           className="form-input"
                           placeholder="Type instructions here..."
@@ -120,14 +120,14 @@ export default function ExerciseForm({ onSubmit, initialData = {} }) {
                   </Row>
 
                   <Row>
-                    <Col xs="12" md="4">
+                    <Col xs="12" md="5">
                       <div className="form-group">
                         <label className="form-label" htmlFor="category">
                           <strong>Category:</strong>
                         </label>
                       </div>
                     </Col>
-                    <Col xs="12" md="8">
+                    <Col xs="12" md="7">
                       <div className="form-group">
                         <Field
                           as="select"
@@ -153,7 +153,7 @@ export default function ExerciseForm({ onSubmit, initialData = {} }) {
                   </Row>
 
                   <Row>
-                    <Col xs="12" md="4">
+                    <Col xs="12" md="5">
                       <div className="form-group">
                         <label className="form-label" htmlFor="file">
                           <strong>Image:</strong>

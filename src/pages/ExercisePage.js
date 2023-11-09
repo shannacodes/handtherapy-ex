@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 export default function ExercisePage({ exerciseList }) {
   let { exerciseId } = useParams(); // exerciseId matches route path from App.js
@@ -11,24 +12,26 @@ export default function ExercisePage({ exerciseList }) {
   }
 
   return (
-    <div>
-      <img
-        src={exercise.image}
-        alt={exercise.name}
-        style={{ maxWidth: "100%", height: "auto" }}
-      />
-      <br></br>
-      <br></br>
-      <h3>{exercise.name}</h3>
-      <p>
-        <strong>Description:</strong> {exercise.desc}
-      </p>
-      <p>
-        <strong>Instructions:</strong> {exercise.instr}
-      </p>
-      <p>
-        <strong>Category:</strong> {exercise.category}
-      </p>
-    </div>
+    <Container className="py-5">
+      <div>
+        <img
+          src={exercise.image}
+          alt={exercise.name}
+          style={{ maxWidth: "100%", height: "auto" }}
+        />
+        <br></br>
+        <br></br>
+        <h3>{exercise.name}</h3>
+        <p>
+          <strong>Description:</strong> {exercise.desc}
+        </p>
+        <p>
+          <strong>Instructions:</strong> {exercise.instr}
+        </p>
+        <p>
+          <strong>Category:</strong> {exercise.category}
+        </p>
+      </div>
+    </Container>
   );
 }

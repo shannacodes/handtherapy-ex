@@ -11,21 +11,33 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CRUDExercise from "./pages/CRUDExercise.js";
 import WelcomePage from "./pages/WelcomePage.js";
+import LoginPage from "./pages/LoginPage.js";
 import SearchResultsPage from "./pages/SearchResultsPage.js";
+
+async function fetchData() {
+  try {
+    const response = await axios.get("http://localhost:8080/exercises");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
 
 function App() {
   const [exerciseList, setExerciseList] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/exercises")
-      .then((response) => {
-        setExerciseList(response.data);
-        console.log("Exercise List:", response.data);
-      })
-      .catch((error) => {
+    async function fetchDataAndSetExerciseList() {
+      try {
+        const data = await fetchData();
+        setExerciseList(data);
+        console.log("Exercise List:", data);
+      } catch (error) {
         console.error("Error fetching data:", error);
-      });
+      }
+    }
+
+    fetchDataAndSetExerciseList();
   }, []);
 
   return (
@@ -49,6 +61,7 @@ function App() {
               element={<ExercisePage exerciseList={exerciseList} />}
             />
             <Route path="/create/" element={<CRUDExercise />} />
+            <Route path="/users/login" element={<LoginPage />} />
             <Route
               path="/search-results/:searchTerm"
               element={<SearchResultsPage />}
