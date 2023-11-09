@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 
 export default function ExercisePage({ exerciseList }) {
   let { exerciseId } = useParams(); // exerciseId matches route path from App.js
-  exerciseId = parseInt(exerciseId);
+  // exerciseId = parseInt(exerciseId); PARSING NOT NECESSARY
 
-  const exercise = exerciseList.find((e) => e.id === exerciseId);
+  const exercise = exerciseList.find((e) => e._id === exerciseId);
 
   if (!exercise) {
     return <h2>Exercise not found.</h2>;

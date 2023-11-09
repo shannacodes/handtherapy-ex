@@ -19,7 +19,7 @@ function ExerciseCard({ exercise }) {
       <p>
         <strong>Type:</strong> {exercise.category}
       </p>
-      <Link to={"/exercise/" + exercise.id}>Details</Link>
+      <Link to={"/expage/" + exercise._id}>Details</Link>
     </div>
   );
 }

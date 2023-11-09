@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import axios from "axios";
 import ExerciseCard from "../components/ExerciseCard";
 
 export default function BrowsePage() {
@@ -8,15 +7,21 @@ export default function BrowsePage() {
   const [exerciseFilter, setExerciseFilter] = useState("Finger");
 
   useEffect(() => {
-    // Fetch exercises from the API
-    axios
-      .get("http://localhost:8080/exercises")
-      .then((response) => {
-        setExerciseList(response.data);
-      })
-      .catch((error) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/exercises");
+        if (response.ok) {
+          const data = await response.json();
+          setExerciseList(data);
+        } else {
+          console.error("Error fetching exercises:", response.status);
+        }
+      } catch (error) {
         console.error("Error fetching exercises:", error);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   let filteredExercises;
@@ -76,7 +81,7 @@ export default function BrowsePage() {
           </Col>
           <Col>
             {filteredExercises.map((exercise) => (
-              <ExerciseCard key={exercise.id} exercise={exercise} />
+              <ExerciseCard key={exercise._id} exercise={exercise} />
             ))}
             <br /> <br />
           </Col>

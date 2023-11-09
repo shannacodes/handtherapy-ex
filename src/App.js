@@ -45,10 +45,10 @@ function App() {
               element={<FeaturedPage exerciseList={exerciseList} />}
             />
             <Route
-              path="/exercise/:exerciseId"
+              path="/expage/:exerciseId"
               element={<ExercisePage exerciseList={exerciseList} />}
             />
-            <Route path="/create" element={<CRUDExercise />} />
+            <Route path="/create/" element={<CRUDExercise />} />
             <Route
               path="/search-results/:searchTerm"
               element={<SearchResultsPage />}
