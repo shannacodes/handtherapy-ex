@@ -4,6 +4,11 @@ import { deleteExercise } from "../redux/actions";
 import ExerciseForm from "../components/ExerciseForm";
 import { Container } from "reactstrap";
 
+// Gets auth token
+const getToken = () => {
+  return "Bearer " + localStorage.getItem("token");
+};
+
 export default function CRUDExercise() {
   const dispatch = useDispatch();
   const [exerciseList, setExerciseList] = useState([]);
@@ -26,8 +31,7 @@ export default function CRUDExercise() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTQ4NmJiYzUyMzUzOTY2NDM3NDZmNzUiLCJpYXQiOjE2OTkzODU2MjYsImV4cCI6MTY5OTM4OTIyNn0.WCLwQO8qnvwhffM9IM190xQ-JmISPN-lB9FVG9O2Cz4",
+          Authorization: getToken(),
         },
         body: JSON.stringify(newExerciseData),
       });
@@ -44,8 +48,7 @@ export default function CRUDExercise() {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTQ4NmJiYzUyMzUzOTY2NDM3NDZmNzUiLCJpYXQiOjE2OTkzODU2MjYsImV4cCI6MTY5OTM4OTIyNn0.WCLwQO8qnvwhffM9IM190xQ-JmISPN-lB9FVG9O2Cz4",
+          Authorization: getToken(),
         },
         body: JSON.stringify(updatedExerciseData),
       });
@@ -71,8 +74,7 @@ export default function CRUDExercise() {
       const response = await fetch(`${resource}/${exerciseId}`, {
         method: "DELETE",
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTQ4NmJiYzUyMzUzOTY2NDM3NDZmNzUiLCJpYXQiOjE2OTkzODU2MjYsImV4cCI6MTY5OTM4OTIyNn0.WCLwQO8qnvwhffM9IM190xQ-JmISPN-lB9FVG9O2Cz4",
+          Authorization: getToken(),
         },
       });
       if (response.ok) {
