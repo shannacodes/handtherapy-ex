@@ -24,7 +24,7 @@ export default function LoginForm({ onSubmit, initialData = {} }) {
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 onSubmit(values);
                 setSubmitting(false);
-                // resetForm();
+                resetForm();
               }}
             >
               {({ isSubmitting }) => (

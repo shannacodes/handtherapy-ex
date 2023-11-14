@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import LoginForm from "../components/LoginForm";
+import { useNavigate } from "react-router-dom";
 
 const UserLogin = () => {
   const resource = "http://localhost:8080/users/login";
+  const [loginSuccess, setLoginSuccess] = useState(false); // state for checking if User logged in successfully
+  const navigate = useNavigate();
+
+  function NavigateSuccess() {
+    navigate("/users/welcome");
+  }
 
   const handleLogin = async (formData) => {
     try {
@@ -22,7 +29,9 @@ const UserLogin = () => {
         // Handle the token, e.g., store it in localStorage
         localStorage.setItem("token", token);
 
+        setLoginSuccess(true); // changes the setLoginSuccess to true, which means User was logged in successfully - YAY!
         console.log("Login successful:", data);
+        NavigateSuccess(); // redirects user to User Welcome Page after successful login - YAY!
       } else {
         console.error("Login failed:", response.statusText);
       }
@@ -50,6 +59,15 @@ const UserLogin = () => {
             </div>
           </Col>
         </Row>
+
+        {/* This shows if login was successful. */}
+        {loginSuccess && (
+          <Row>
+            <Col className="m-3 p-3">
+              <div className="success-message">Login successful!</div>
+            </Col>
+          </Row>
+        )}
       </Container>
     </div>
   );

@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import CRUDExercise from "./pages/CRUDExercise.js";
 import WelcomePage from "./pages/WelcomePage.js";
 import LoginPage from "./pages/LoginPage.js";
+import UserWelcomePage from "./pages/UserWelcomePage.js";
 import SearchResultsPage from "./pages/SearchResultsPage.js";
 
 async function fetchData() {
@@ -62,6 +63,7 @@ function App() {
             />
             <Route path="/create/" element={<CRUDExercise />} />
             <Route path="/users/login" element={<LoginPage />} />
+            <Route path="/users/welcome" element={<UserWelcomePage />} />
             <Route
               path="/search-results/:searchTerm"
               element={<SearchResultsPage />}
