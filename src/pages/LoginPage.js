@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import LoginForm from "../components/LoginForm";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const UserLogin = () => {
   const resource = "http://localhost:8080/users/login";
@@ -55,7 +55,9 @@ const UserLogin = () => {
             </div>
             <div>
               <LoginForm onSubmit={handleLogin} />
-              <p>Don't have an account? Create one.</p>
+              <p>
+                Don't have an account? <Link to="/users/signup">Sign up</Link>.
+              </p>
             </div>
           </Col>
         </Row>

@@ -12,7 +12,7 @@ const Welcome = () => {
       <Row>
         <Col className="m-3 p-3">
           <div>
-            <p>Login was successful. Now, let's make some exercises!</p>
+            <p>Login was successful. Now let's make some exercises!</p>
           </div>
         </Col>
       </Row>
