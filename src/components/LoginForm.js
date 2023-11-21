@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Container, Row, Col } from "reactstrap";
@@ -10,6 +10,8 @@ const validationSchema = Yup.object({
 });
 
 export default function LoginForm({ onSubmit, initialData = {} }) {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <Container>
       <Row className="justify-content-left">
@@ -63,10 +65,10 @@ export default function LoginForm({ onSubmit, initialData = {} }) {
                         </label>
                       </div>
                     </Col>
-                    <Col xs="12" md="9">
+                    <Col xs="12" md="6">
                       <div className="form-group">
                         <Field
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           id="password"
                           name="password"
                           className="form-input"
@@ -77,6 +79,16 @@ export default function LoginForm({ onSubmit, initialData = {} }) {
                           component="div"
                           className="error"
                         />
+                      </div>
+                    </Col>
+                    <Col xs="12" md="3">
+                      <div className="form-group">
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? "Hide" : "Show"}
+                        </button>
                       </div>
                     </Col>
                   </Row>
