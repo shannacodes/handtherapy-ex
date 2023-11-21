@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteExercise } from "../redux/actions";
 import ExerciseForm from "../components/ExerciseForm";
-import { Container } from "reactstrap";
+import { Container, Alert } from "reactstrap";
 
 // Gets auth token
 const getToken = () => {
@@ -13,7 +13,11 @@ export default function CRUDExercise() {
   const dispatch = useDispatch();
   const [exerciseList, setExerciseList] = useState([]);
   const [editingExercise, setEditingExercise] = useState(null);
+
   const resource = "http://localhost:8080/exercises"; // important to run local server on this specific port
+
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     // Fetch exercise data when the component mounts
@@ -37,8 +41,12 @@ export default function CRUDExercise() {
       });
       const data = await response.json();
       setExerciseList([...exerciseList, data]);
+      setSuccessMessage("Exercise added successfully!");
+      setErrorMessage(null);
     } catch (error) {
       console.error("An error occurred:", error);
+      setSuccessMessage(null);
+      setErrorMessage("Failed to add exercise. Please try again.");
     }
   };
 
@@ -61,8 +69,11 @@ export default function CRUDExercise() {
         });
         setExerciseList(updatedExercises);
         setEditingExercise(null);
+        setSuccessMessage("Updated exercise successfully.");
+        setErrorMessage(null);
       } else {
-        // Handle the error appropriately
+        setSuccessMessage(null);
+        setErrorMessage("Error updated exercise. Please try again.");
       }
     } catch (error) {
       console.error("An error occurred:", error);
@@ -83,8 +94,11 @@ export default function CRUDExercise() {
         setExerciseList((prevExerciseList) =>
           prevExerciseList.filter((exercise) => exercise._id !== exerciseId)
         );
+        setSuccessMessage("Exercise successfully deleted.");
+        setErrorMessage(null);
       } else {
-        // Handle the error appropriately
+        setSuccessMessage(null);
+        setErrorMessage("Failed to delete exercise. Please try again.");
       }
     } catch (error) {
       console.error("An error occurred:", error);
@@ -113,6 +127,16 @@ export default function CRUDExercise() {
             <h2>Create Your Own Exercise</h2>
             <p>Fill out the form below, then click the "Submit" button.</p>
             <ExerciseForm onSubmit={handleAddExercise} />
+            {successMessage && (
+              <Alert color="success" className="mt-5">
+                {successMessage}
+              </Alert>
+            )}
+            {errorMessage && (
+              <Alert color="danger" className="mt-5">
+                {errorMessage}
+              </Alert>
+            )}
             <br />
             <br />
             <h2>List of Exercises</h2>

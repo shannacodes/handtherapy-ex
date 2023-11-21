@@ -54,9 +54,20 @@ export default function UserSignupForm({ onSubmit, initialData = {} }) {
               }}
               validationSchema={validationSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
-                onSubmit(values);
-                setSubmitting(false);
-                resetForm();
+                onSubmit(values)
+                  .then((response) => {
+                    const token = response.token;
+
+                    // Store the token in local storage or state
+                    localStorage.setItem("token", token);
+                    setSubmitting(false);
+                    resetForm();
+                  })
+                  .catch((error) => {
+                    // Handle errors, if any
+                    console.error("Error:", error);
+                    setSubmitting(false);
+                  });
               }}
             >
               {({ isSubmitting }) => (

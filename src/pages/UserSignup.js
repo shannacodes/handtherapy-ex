@@ -14,6 +14,8 @@ const UserSignup = () => {
 
   const handleSignup = async (formData) => {
     try {
+      console.log("Form Data:", formData);
+
       const response = await fetch(resource, {
         method: "POST",
         headers: {
@@ -25,6 +27,7 @@ const UserSignup = () => {
       if (response.ok) {
         const data = await response.json();
         const token = data.token;
+        console.log("Received token:", token);
 
         // Handle the token, e.g., store it in localStorage
         localStorage.setItem("token", token);
@@ -62,7 +65,6 @@ const UserSignup = () => {
           </Col>
         </Row>
 
-        {/* This shows if signup or account creation was successful. */}
         {signupSuccess && (
           <Row>
             <Col className="m-3 p-3">

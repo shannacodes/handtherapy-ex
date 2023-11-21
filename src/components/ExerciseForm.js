@@ -134,7 +134,9 @@ export default function ExerciseForm({ onSubmit, initialData = {} }) {
                           name="category"
                           className="form-select"
                         >
-                          <option value="">Choose one...</option>
+                          <option value="" disabled hidden>
+                            Choose one...
+                          </option>
                           <option value="Finger">Finger</option>
                           <option value="Thumb">Thumb</option>
                           <option value="Wrist">Wrist</option>
