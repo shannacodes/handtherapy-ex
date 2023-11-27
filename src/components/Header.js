@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Container, Row, Col } from "react-bootstrap";
 import logo2 from "../images/logo3.png";
@@ -10,6 +10,15 @@ import "../styles/header.css";
 const Header = () => {
   const history = createBrowserHistory();
   const [searchTerm, setSearchTerm] = useState("");
+  const [tokenIsPresent, setTokenIsPresent] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if the token is present in localStorage
+    const storedToken = localStorage.getItem("token");
+    setTokenIsPresent(!!storedToken);
+    setIsLoggedIn(true);
+  }, []);
 
   const handleSearch = (value) => {
     setSearchTerm(value);
@@ -19,6 +28,12 @@ const Header = () => {
 
   const handleSubmit = (e) => {
     handleSearch(searchTerm);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    history.push("/users/login");
   };
 
   return (
@@ -62,10 +77,23 @@ const Header = () => {
                 Create Exercise
               </Nav.Link>
             </Nav>
-            <Nav classname="ml-auto">
-              <Nav.Link className="special" as={Link} to="/users/login">
-                Login
-              </Nav.Link>
+            <Nav className="ml-auto">
+              {isLoggedIn && tokenIsPresent ? (
+                // User is looged in, show logout link
+                <Nav.Link
+                  className="special"
+                  as={Link}
+                  to="/users/logout"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Nav.Link>
+              ) : (
+                // User is NOT logged in, show LOGIN link
+                <Nav.Link className="special" as={Link} to="/users/login">
+                  Login
+                </Nav.Link>
+              )}
             </Nav>
           </Container>
         </Navbar>

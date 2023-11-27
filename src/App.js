@@ -64,6 +64,7 @@ function App() {
             />
             <Route path="/create/" element={<CRUDExercise />} />
             <Route path="/users/login" element={<LoginPage />} />
+            <Route path="/users/logout" element={<LoginPage />} />
             <Route path="/users/welcome" element={<UserWelcomePage />} />
             <Route path="/users/signup" element={<UserSignup />} />
             <Route
