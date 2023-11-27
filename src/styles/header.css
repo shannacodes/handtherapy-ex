@@ -8,8 +8,8 @@
 
 a.linkStyle {
     color: #fff;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 28px;
+    font-weight: 450;
 }
 
 a.linkStyle:hover {
@@ -26,7 +26,7 @@ header {
     font-weight: bold;
     text-transform: uppercase;
     color: #7ED957;
-    font-size: 18px;
+    font-size: 25px;
 }
 
 .special:hover {

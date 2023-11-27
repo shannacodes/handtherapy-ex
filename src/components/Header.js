@@ -12,6 +12,7 @@ const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [tokenIsPresent, setTokenIsPresent] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     // Check if the token is present in localStorage
@@ -53,48 +54,65 @@ const Header = () => {
               </form>
             </Col>
             <Col xs={12} className="text-center">
-              <img src={darklogo} alt="Hand Exercise Generator App Logo" />
+              <img
+                src={darklogo}
+                alt="Hand Exercise Generator App Logo"
+                className="img-fluid"
+              />
             </Col>
           </Row>
         </Container>
 
-        <Navbar className="navbarStyle">
+        <Navbar className="navbarStyle" expanded={expanded} expand="lg">
           <Container>
             <Navbar.Brand as={Link} to="/">
-              <img src={logo2} alt="Small navbar logo" width="55" />
+              <img
+                src={logo2}
+                alt="Small navbar logo"
+                width="55"
+                className="img-fluid"
+              />
             </Navbar.Brand>
-            <Nav className="me-auto">
-              <Nav.Link className="linkStyle" as={Link} to="/">
-                Home
-              </Nav.Link>
-              <Nav.Link className="linkStyle" as={Link} to="/browse">
-                Browse
-              </Nav.Link>
-              <Nav.Link className="linkStyle" as={Link} to="/featured">
-                Featured Exercise
-              </Nav.Link>
-              <Nav.Link className="linkStyle" as={Link} to="/create">
-                Create Exercise
-              </Nav.Link>
-            </Nav>
-            <Nav className="ml-auto">
-              {isLoggedIn && tokenIsPresent ? (
-                // User is looged in, show logout link
-                <Nav.Link
-                  className="special"
-                  as={Link}
-                  to="/users/logout"
-                  onClick={handleLogout}
-                >
-                  Logout
+
+            <Navbar.Toggle
+              aria-controls="responsive-navbar-nav"
+              onClick={() => setExpanded(!expanded)}
+            />
+
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link className="linkStyle" as={Link} to="/">
+                  Home
                 </Nav.Link>
-              ) : (
-                // User is NOT logged in, show LOGIN link
-                <Nav.Link className="special" as={Link} to="/users/login">
-                  Login
+                <Nav.Link className="linkStyle" as={Link} to="/browse">
+                  Browse
                 </Nav.Link>
-              )}
-            </Nav>
+                <Nav.Link className="linkStyle" as={Link} to="/featured">
+                  Featured Exercise
+                </Nav.Link>
+                <Nav.Link className="linkStyle" as={Link} to="/create">
+                  Create Exercise
+                </Nav.Link>
+              </Nav>
+              <Nav className="ml-auto">
+                {isLoggedIn && tokenIsPresent ? (
+                  // User is looged in, show logout link
+                  <Nav.Link
+                    className="special"
+                    as={Link}
+                    to="/users/logout"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Nav.Link>
+                ) : (
+                  // User is NOT logged in, show LOGIN link
+                  <Nav.Link className="special" as={Link} to="/users/login">
+                    Login
+                  </Nav.Link>
+                )}
+              </Nav>
+            </Navbar.Collapse>
           </Container>
         </Navbar>
       </div>

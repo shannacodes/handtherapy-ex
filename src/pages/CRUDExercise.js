@@ -61,6 +61,8 @@ export default function CRUDExercise() {
         body: JSON.stringify(updatedExerciseData),
       });
       if (response.ok) {
+        const data = await response.json();
+
         const updatedExercises = exerciseList.map((exercise) => {
           if (exercise._id === exerciseId) {
             return { ...exercise, ...updatedExerciseData };
