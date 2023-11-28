@@ -34,7 +34,6 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
-    history.push("/users/login");
   };
 
   return (
