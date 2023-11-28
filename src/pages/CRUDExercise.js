@@ -14,7 +14,8 @@ export default function CRUDExercise() {
   const [exerciseList, setExerciseList] = useState([]);
   const [editingExercise, setEditingExercise] = useState(null);
 
-  const resource = "http://localhost:8080/exercises"; // important to run local server on this specific port
+  const resource =
+    "https://us-central1-hand-ex-gen.cloudfunctions.net/myApp/exercises"; // important to run local server on this specific port
 
   const [successMessage, setSuccessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -61,7 +62,7 @@ export default function CRUDExercise() {
         body: JSON.stringify(updatedExerciseData),
       });
       if (response.ok) {
-        const data = await response.json();
+        await response.json();
 
         const updatedExercises = exerciseList.map((exercise) => {
           if (exercise._id === exerciseId) {

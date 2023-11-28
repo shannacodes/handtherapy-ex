@@ -4,7 +4,8 @@ import LoginForm from "../components/LoginForm";
 import { useNavigate, Link } from "react-router-dom";
 
 const UserLogin = () => {
-  const resource = "http://localhost:8080/users/login";
+  const resource =
+    "https://us-central1-hand-ex-gen.cloudfunctions.net/myApp/users/login";
   const [loginSuccess, setLoginSuccess] = useState(false); // state for checking if User logged in successfully
   const navigate = useNavigate();
 

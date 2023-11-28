@@ -14,13 +14,11 @@ export default function ExercisePage({ exerciseList }) {
   return (
     <Container className="py-5">
       <div>
-        <img
+        {/* <img
           src={exercise.image}
           alt={exercise.name}
           style={{ maxWidth: "100%", height: "auto" }}
-        />
-        <br></br>
-        <br></br>
+        /> */}
         <h3>{exercise.name}</h3>
         <p>
           <strong>Description:</strong> {exercise.desc}

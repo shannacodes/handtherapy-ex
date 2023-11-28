@@ -11,9 +11,7 @@ export default function FeaturedPage({ exerciseList }) {
           <h5>Check out this featured exercise:</h5>
         </div>
         <div className="bg-light text-black border rounded p-4 m-2">
-          <p>
-            <h2>{featuredExercise.name}</h2>
-          </p>
+          <h2>{featuredExercise.name}</h2>
           <p>
             <strong>Description:</strong> {featuredExercise.desc}
           </p>

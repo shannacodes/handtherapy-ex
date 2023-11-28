@@ -12,10 +12,10 @@ export default function WelcomePage() {
         <Col className="m-3 p-3">
           <div>
             <p>
-              <strong>The Hand Exercise Generator</strong> App is designed to
-              help physical and occupational therapists (and other related
-              professionals) to create and share custom hand and upper extremity
-              exercises and home programs easily, efficiently, and sustainably.
+              <strong>The Hand Exercise Generator</strong> aims to help physical
+              and occupational therapists (and other related professionals) to
+              create and share custom hand and upper extremity exercises and
+              home programs easily, efficiently, and sustainably.
             </p>
           </div>
         </Col>

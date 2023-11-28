@@ -9,7 +9,9 @@ export default function BrowsePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/exercises");
+        const response = await fetch(
+          "https://us-central1-hand-ex-gen.cloudfunctions.net/myApp/exercises"
+        );
         if (response.ok) {
           const data = await response.json();
           setExerciseList(data);

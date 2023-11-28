@@ -4,7 +4,8 @@ import UserSignupForm from "../components/UserSignupForm";
 import { useNavigate } from "react-router-dom";
 
 const UserSignup = () => {
-  const resource = "http://localhost:8080/users/signup";
+  const resource =
+    "https://us-central1-hand-ex-gen.cloudfunctions.net/myApp/users/signup";
   const [signupSuccess, setSignupSuccess] = useState(false); // state for checking if User logged in successfully
   const navigate = useNavigate();
 

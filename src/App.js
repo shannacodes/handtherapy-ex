@@ -18,7 +18,9 @@ import SearchResultsPage from "./pages/SearchResultsPage.js";
 
 async function fetchData() {
   try {
-    const response = await axios.get("http://localhost:8080/exercises");
+    const response = await axios.get(
+      "https://us-central1-hand-ex-gen.cloudfunctions.net/myApp/exercises"
+    );
     return response.data;
   } catch (error) {
     throw error;

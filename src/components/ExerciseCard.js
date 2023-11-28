@@ -4,13 +4,11 @@ function ExerciseCard({ exercise }) {
   // Displays exs in a CARD
   return (
     <div className="bg-light text-black border rounded p-4 m-2">
-      <img
+      {/* <img
         src={exercise.image}
         alt={exercise.name}
         style={{ maxWidth: "100%", height: "auto" }}
-      />
-      <br></br>
-      <br></br>
+      /> */}
       <h4>{exercise.name}</h4>
       <p>
         <strong>Description:</strong> {exercise.desc}
