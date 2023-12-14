@@ -47,7 +47,7 @@ export default function CRUDExercise() {
     } catch (error) {
       console.error("An error occurred:", error);
       setSuccessMessage(null);
-      setErrorMessage("Failed to add exercise. Please try again.");
+      setErrorMessage("Failed to add exercise. Please log in and try again.");
     }
   };
 
@@ -76,7 +76,9 @@ export default function CRUDExercise() {
         setErrorMessage(null);
       } else {
         setSuccessMessage(null);
-        setErrorMessage("Error updated exercise. Please try again.");
+        setErrorMessage(
+          "Error updating exercise. Please log in and try again."
+        );
       }
     } catch (error) {
       console.error("An error occurred:", error);
